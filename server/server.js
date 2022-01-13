@@ -10,9 +10,16 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+// app.get("/", (req, res) => {
+//     return res.json({ message: "🦸" });
+// });
+
+app.use(express.static("./client"));
+
 app.get("/", (req, res) => {
-    return res.json({ message: "🦸" });
+  res.sendFile(__dirname + "./client/index.html");
 });
+
 
 app.post("/request", (req, res) => {
     if (!req.body || !req.body.fileName) return res.status(400).json({ message: 'Missing "fileName"' });
@@ -60,7 +67,7 @@ app.post('/upload', (req, res) => {
         return res.status(400).json({ message: 'Invalid "Content-Range" provided' });
     }
 
-    const busboy = new Busboy({ headers: req.headers });
+    const busboy = Busboy({ headers: req.headers });
 
     busboy.on('file', (_, fileStream, fileInfo) => {
         if (!fileId) {
