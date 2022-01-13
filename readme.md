@@ -29,3 +29,7 @@
     ```sh 
     http://127.0.0.1:3000/ 
     ```
+
+### Credits
+i followed this tutorial and added some changed 
+https://medium.com/before-semicolon/how-to-create-a-resumable-multifile-uploader-with-javascript-b077cece11c7
